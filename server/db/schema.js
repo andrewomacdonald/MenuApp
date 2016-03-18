@@ -33,6 +33,21 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
+db.knex.schema.hasTable('user_preferences').then(function(exists){
+  if(!exists){
+    knex.schema.createTable('user_preferences', function(preference){
+      preference.increments('id').primary();
+      preference.boolean('allergy');
+      preference.boolean('favorite');
+      preference.string('ingredient', 50);
+      preference.integer('user_id').unsigned();
+      preference.foreign('user_id').references('id').inTable('users');
+    }).then(function() {
+      console.log('user_preferences table has been created');
+    })
+  }
+});
+
 db.knex.schema.hasTable('restaurants').then(function(exists) {
   if(!exists){
     knex.schema.createTable('restaurants', function(restaurant) {
@@ -48,6 +63,7 @@ db.knex.schema.hasTable('menu_items').then(function(exists) {
   if(!exists){
     knex.schema.createTable('menu_items', function(menuitems) {
       menuitems.increments('id').primary();
+      menuitems.string('item', 50);
       menuitems.integer('restaurant_id').unsigned();
       menuitems.foreign('restaurant_id').references('id').inTable('restaurants');
     }).then(function() {
@@ -70,6 +86,7 @@ db.knex.schema.hasTable('item_ratings').then(function(exists) {
     });
   }
 });
+
 
 
 
