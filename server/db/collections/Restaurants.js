@@ -1,4 +1,4 @@
-var bookshelf = require('..schema.js').bookshelf;
+var bookshelf = require('../schema.js').bookshelf;
 var Restaurant = require('/..models/Restaurant.js');
 
 var Restaurants = new bookshelf.collection();
