@@ -1,7 +1,6 @@
 var bookshelf = require('../schema.js').bookshelf;
 var User = require('./User.js');
-var Menu_Item = require('./Menu_Item');
-var Item_Rating = require('./Item_Rating.js');
+var Menu_Item = require('./Menu_Item.js');
 
 var Item_Rating = bookshelf.Model.extend({
   tableName: 'item_ratings',

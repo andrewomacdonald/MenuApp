@@ -17,7 +17,6 @@ var bookshelf = require('bookshelf')(knex);
 var db = bookshelf;
 
 
-//table containing information user enters when signing up
 db.knex.schema.hasTable('users').then(function(exists) {
   if(!exists) {
     knex.schema.createTable('users', function(user) {
@@ -29,21 +28,6 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('username', 30).unique();
     }).then(function(){
       console.log('users table has been created');
-    });
-  }
-});
-
-db.knex.schema.hasTable('user_preferences').then(function(exists){
-  if(!exists){
-    knex.schema.createTable('user_preferences', function(preference){
-      preference.increments('id').primary();
-      preference.boolean('allergy');
-      preference.boolean('favorite');
-      preference.string('ingredient', 50);
-      preference.integer('user_id').unsigned();
-      preference.foreign('user_id').references('id').inTable('users');
-    }).then(function() {
-      console.log('user_preferences table has been created');
     })
   }
 });
@@ -72,6 +56,10 @@ db.knex.schema.hasTable('menu_items').then(function(exists) {
   }
 });
 
+
+
+
+
 db.knex.schema.hasTable('item_ratings').then(function(exists) {
   if(!exists){
     knex.schema.createTable('item_ratings', function(rating) {
@@ -87,6 +75,20 @@ db.knex.schema.hasTable('item_ratings').then(function(exists) {
   }
 });
 
+db.knex.schema.hasTable('user_preferences').then(function(exists){
+  if(!exists){
+    knex.schema.createTable('user_preferences', function(preference){
+      preference.increments('id').primary();
+      preference.boolean('allergy');
+      preference.boolean('favorite');
+      preference.string('ingredient', 50);
+      preference.integer('user_id').unsigned();
+      preference.foreign('user_id').references('id').inTable('users');
+    }).then(function() {
+      console.log('user_preferences table has been created');
+    })
+  }
+});
 
 
 
