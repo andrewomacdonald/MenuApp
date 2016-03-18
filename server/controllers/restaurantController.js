@@ -29,7 +29,7 @@ module.exports = {
         data = _.filter(data, function(element) {
           return element.hasMenu;
         });
-        // console.log('++line 32 inside getRestaurants in restaurantCtrl',data);
+        console.log(data[0].id);
         res.send(data);
       }
     });

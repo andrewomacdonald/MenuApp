@@ -1,4 +1,4 @@
-var bookshelf = require('..schema.js').bookshelf;
+var bookshelf = require('../schema.js').bookshelf;
 var Item_Rating = require('/..models/Item_Rating.js');
 
 var Item_Ratings = new bookshelf.collection();
