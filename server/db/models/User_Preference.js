@@ -7,6 +7,6 @@ var User_Preference = bookshelf.Model.extend({
   users: function() {
     return this.belongsTo(User, 'user_id');
   }
-})
+});
 
 module.exports = User_Preference;
