@@ -28,14 +28,22 @@ module.exports = {
 
   insertRestaurant: function(restaurant, callback){
     new Restaurant( {restaurant_id: restaurant} )
-      .save()
-      .then(function(){
-        if(callback){
-        callback(restaurant);
-      }
-    });
-  },
-};
+      .fetch()
+      .then(function(exists){
+        if(!exists){
+          var newRestaurant = new Restaurant({
+            restaurant_id: restaurant
+          });
+          newRestaurant.save()
+          .then(function() {
+            if(callback){
+              callback(restaurant);
+            }
+          })
+        };
+      })
+    }
+  }
 
   // insertMenuItem: function(menuitem, callback){
   //   new Menu_Item( {'item': menuitem} )
