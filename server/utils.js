@@ -20,28 +20,38 @@ module.exports = {
   },
 
   getRestaurantID: function(restaurant, callback){
-    new Restaurant().where({'restaurant_id': restaurant}).fetch()
+    Restaurant.where({'restaurant_id': restaurant}).fetch()
     .then(function(data){
       console.log(data);
-      callback(data.id);
-    });
+    })
   },
 
   insertRestaurant: function(restaurant, callback){
-    new Restaurant( {'restaurant_id': restaurant} )
-      .fetch()
-      .then(function (restaurantExists){
-        if(!restaurantExists){
-          var newRestaurant = new Restaurant({
-            restaurant_id: restaurant
-          });
-        newRestaurant.save()
+    new Restaurant( {restaurant_id: restaurant} )
+      .save()
+      .then(function(){
         if(callback){
-            callback(restaurant);
-          }
-      } else {
-          console.log('NOPE');
+        callback(restaurant);
       }
-    })
-  }
+    });
+  },
 };
+
+  // insertMenuItem: function(menuitem, callback){
+  //   new Menu_Item( {'item': menuitem} )
+  //   .fetch();
+  //   .then(function (menuitemexists){
+  //     if(!menuitemexists){
+  //       var newMenuItem = new Menu_Item({
+  //         item: menuitem
+  //       })
+  //     }
+  //   })
+  // }
+
+
+  // .then(function (restaurantExists){
+  //   if(!restaurantExists){
+  //     var newRestaurant = new Restaurant({
+  //       restaurant_id: restaurant
+  //     });

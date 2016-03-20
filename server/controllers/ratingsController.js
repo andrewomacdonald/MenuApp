@@ -19,8 +19,8 @@ module.exports = {
 
     Utils.insertRestaurant(restaurant, function(data){
         Utils.getRestaurantID(data, function(id){
-          console.log(id);
-        });
+          console.log('inside');
+      });
     })
   }
 }
